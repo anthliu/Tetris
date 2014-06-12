@@ -1,6 +1,7 @@
 CC=clang++
-LDLIBS=-lsmfl-graphics -lsmfl-window -lsfml-system
+LDLIBS=-lsfml-graphics -lsfml-window -lsfml-system
 
 all:main
+
 clean:
 	rm -f *.o

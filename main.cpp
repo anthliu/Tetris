@@ -32,7 +32,7 @@ void drawField(Square field[10][22], sf::RenderWindow& window)
 {
   sf::RectangleShape rectangle(sf::Vector2f(TETRIS_BOX_SIZE, TETRIS_BOX_SIZE));
   int xPos = 0;
-  int yPos = 0;
+  int yPos = -2 * TETRIS_BOX_SIZE;//the areas that are not shown to the player
 
   for (int j = 0; j < 22; j++)
     {

@@ -38,6 +38,8 @@ int main()
     }
 
   sf::RenderWindow window(sf::VideoMode(10 * TETRIS_BOX_SIZE, 20 * TETRIS_BOX_SIZE), "Tetris");
+  window.setVerticalSyncEnabled(true);
+  window.setFramerateLimit(30);
   
   while (window.isOpen())
     {

@@ -1,59 +1,9 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
-
-#define TETRIS_BOX_SIZE 30
-
-class Square
-{
-  sf::Color color;
-  bool on;
-public:
-  void setColor(int r, int g, int b)
-  {
-    color.r = r;
-    color.g = g;
-    color.b = b;
-  }
-  void setOn()
-  {
-    on = true;
-  }
-  void setOff()
-  {
-    on = false;
-  }
-  bool getState()
-  {
-    return on;
-  }
-};
-
-void drawField(Square field[10][22], sf::RenderWindow& window)
-{
-  sf::RectangleShape rectangle(sf::Vector2f(TETRIS_BOX_SIZE, TETRIS_BOX_SIZE));
-  int xPos = 0;
-  int yPos = -2 * TETRIS_BOX_SIZE;//the areas that are not shown to the player
-
-  for (int j = 0; j < 22; j++)
-    {
-      xPos = 0;
-      for (int i = 0; i < 10; i++)
-	{
-	  if (field[i][j].getState())
-	    {
-	      rectangle.move(xPos, yPos);
-	      window.draw(rectangle);
-	    }
-	  xPos += TETRIS_BOX_SIZE;
-	}
-      yPos += TETRIS_BOX_SIZE;
-    }
-}
-
+#include "blocks.hpp"
 
 int main()
 {
-
   Square field[10][22];
   for (int i = 0; i < 10; i++)
     {

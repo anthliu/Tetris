@@ -22,6 +22,7 @@ class Block
 {
   int coordinates[4][2];
   sf::Color color;
+  BlockType bType;
 public:
   Block(BlockType type);
   void reset(BlockType type);

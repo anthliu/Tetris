@@ -35,18 +35,97 @@ Block::Block(BlockType type)
 
 void Block::reset(BlockType type)
 {
+  bType = type;
   if (type == I_BLOCK)
     {
-      coordinates[0][0] = 2;
+      coordinates[0][0] = 3;
       coordinates[0][1] = 1;
 
-      coordinates[1][0] = 3;
+      coordinates[1][0] = 4;
       coordinates[1][1] = 1;
+      
+      coordinates[2][0] = 5;
+      coordinates[2][1] = 1;
+
+      coordinates[3][0] = 6;
+      coordinates[3][1] = 1;
+    } else if (type == J_BLOCK)
+    {
+      coordinates[0][0] = 4;
+      coordinates[0][1] = 0;
+
+      coordinates[1][0] = 5;
+      coordinates[1][1] = 0;
+      
+      coordinates[2][0] = 6;
+      coordinates[2][1] = 0;
+
+      coordinates[3][0] = 6;
+      coordinates[3][1] = 1;
+    } else if (type == L_BLOCK)
+    {
+      coordinates[0][0] = 4;
+      coordinates[0][1] = 1;
+
+      coordinates[1][0] = 5;
+      coordinates[1][1] = 1;
+      
+      coordinates[2][0] = 6;
+      coordinates[2][1] = 1;
+
+      coordinates[3][0] = 6;
+      coordinates[3][1] = 0;
+    } else if (type == O_BLOCK)
+    {
+      coordinates[0][0] = 4;
+      coordinates[0][1] = 0;
+
+      coordinates[1][0] = 5;
+      coordinates[1][1] = 0;
       
       coordinates[2][0] = 4;
       coordinates[2][1] = 1;
 
       coordinates[3][0] = 5;
+      coordinates[3][1] = 1;
+    } else if (type == S_BLOCK)
+    {
+      coordinates[0][0] = 4;
+      coordinates[0][1] = 1;
+
+      coordinates[1][0] = 5;
+      coordinates[1][1] = 1;
+      
+      coordinates[2][0] = 5;
+      coordinates[2][1] = 0;
+
+      coordinates[3][0] = 6;
+      coordinates[3][1] = 0;
+    } else if (type == T_BLOCK)
+    {
+      coordinates[0][0] = 4;
+      coordinates[0][1] = 0;
+
+      coordinates[1][0] = 5;
+      coordinates[1][1] = 0;
+      
+      coordinates[2][0] = 6;
+      coordinates[2][1] = 0;
+
+      coordinates[3][0] = 5;
+      coordinates[3][1] = 1;
+    } else
+    {
+      coordinates[0][0] = 4;
+      coordinates[0][1] = 0;
+
+      coordinates[1][0] = 5;
+      coordinates[1][1] = 0;
+      
+      coordinates[2][0] = 5;
+      coordinates[2][1] = 1;
+
+      coordinates[3][0] = 6;
       coordinates[3][1] = 1;
     }
 }

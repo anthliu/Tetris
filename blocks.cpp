@@ -138,9 +138,27 @@ void Block::initBlock(Square field[10][22])
     }
 }
 
-bool Block::update(Square field[10][22])
+bool Block::update(Square field[10][22], Direction dir)
 {
-  /*Returns false if the block is on the floor/on another block*/
+  /*Returns false if the block is on the floor/on another block/block cannot move in that direction*/
+  int updateX, updateY;
+  if (dir == DOWN)
+    {
+      updateX = 0;
+      updateY = 1;
+    } else if (dir == RIGHT)
+    {
+      updateX = 1;
+      updateY = 0;
+    } else if (dir == LEFT)
+    {
+      updateX = -1;
+      updateY = 0;
+    } else
+    {
+      updateX = 0;
+      updateY = -1;
+    }
 
   for (int i = 0; i < 4; i++)
     {
@@ -149,11 +167,12 @@ bool Block::update(Square field[10][22])
 
   for (int j = 0; j < 4; j++)
     {
-      if (field[coordinates[j][0]][coordinates[j][1] + 1].getState())
+      if (field[coordinates[j][0] + updateX][coordinates[j][1] + updateY].getState())
 	return false;
       else
 	{
-	  coordinates[j][1]++;
+	  coordinates[j][0] += updateX;
+	  coordinates[j][1] += updateY;
 	  field[coordinates[j][0]][coordinates[j][1]].setOn();
 	}
     }

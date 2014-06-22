@@ -17,6 +17,7 @@ public:
 };
 
 enum BlockType {I_BLOCK, J_BLOCK, L_BLOCK, O_BLOCK, S_BLOCK, T_BLOCK, Z_BLOCK};
+enum Direction {UP, RIGHT, DOWN, LEFT};
 
 class Block
 {
@@ -27,7 +28,7 @@ public:
   Block(BlockType type);
   void reset(BlockType type);
   void initBlock(Square field[10][22]);
-  bool update(Square field[10][22]);
+  bool update(Square field[10][22], Direction dir);
 
 };
 

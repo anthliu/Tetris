@@ -19,6 +19,10 @@ int main()
   sf::RenderWindow window(sf::VideoMode(10 * TETRIS_BOX_SIZE, 20 * TETRIS_BOX_SIZE), "Tetris");
   window.setVerticalSyncEnabled(true);
   window.setFramerateLimit(30);
+
+  Block theBlock(randomBlock());
+  theBlock.initBlock(field);
+  int curFrame = 0;
   
   while (window.isOpen())
     {
@@ -27,6 +31,18 @@ int main()
 	{
 	  if (event.type == sf::Event::Closed)
 	    window.close();
+	}
+
+      if (curFrame == GAME_SPEED)
+	{
+	  curFrame = 0;
+	  if (!theBlock.update(field, DOWN))
+	    {
+	      theBlock.reset(randomBlock());
+	    }
+	} else
+	{
+	  curFrame++;
 	}
 
       window.clear(sf::Color::Black);

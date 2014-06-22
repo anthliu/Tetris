@@ -173,6 +173,7 @@ bool Block::update(Square field[10][22], Direction dir)
 
   for (int j = 0; j < 4; j++)
     {
+      
       if (field[coordinates[j][0] + updateX][coordinates[j][1] + updateY].getState())
 	return false;
       else

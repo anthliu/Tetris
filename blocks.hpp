@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #define TETRIS_BOX_SIZE 30
+#define GAME_SPEED 15
 
 class Square
 {
@@ -23,6 +24,7 @@ BlockType randomBlock();
 
 class Block
 {
+
   int coordinates[4][2];
   sf::Color color;
   BlockType bType;

@@ -138,6 +138,28 @@ void Block::initBlock(Square field[10][22])
     }
 }
 
+bool Block::update(Square field[10][22])
+{
+  /*Returns false if the block is on the floor/on another block*/
+
+  for (int i = 0; i < 4; i++)
+    {
+      field[coordinates[i][0]][coordinates[i][1]].setOff();
+    }
+
+  for (int j = 0; j < 4; j++)
+    {
+      if (field[coordinates[j][0]][coordinates[j][1] + 1].getState())
+	return false;
+      else
+	{
+	  coordinates[j][1]++;
+	  field[coordinates[j][0]][coordinates[j][1]].setOn();
+	}
+    }
+  return true;
+}
+
 void drawField(Square field[10][22], sf::RenderWindow& window)
 {
   sf::RectangleShape rectangle(sf::Vector2f(TETRIS_BOX_SIZE, TETRIS_BOX_SIZE));

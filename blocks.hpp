@@ -27,6 +27,7 @@ public:
   Block(BlockType type);
   void reset(BlockType type);
   void initBlock(Square field[10][22]);
+  bool update(Square field[10][22]);
 
 };
 

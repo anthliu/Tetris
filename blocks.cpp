@@ -144,6 +144,16 @@ void Block::initBlock(Square field[10][22])
     }
 }
 
+bool Block::testField(int coordinatePair[2], Square field[10][22])
+{
+  if (coordinatePair[0] >= 10 or coordinatePair[0] < 0)
+    {
+      if (coordinatePair[1] >= 22 or coordinatePair[1] < 0)
+	return false;
+    }
+  return true;
+}
+
 bool Block::update(Square field[10][22], Direction dir)
 {
   /*Returns false if the block is on the floor/on another block/block cannot move in that direction*/
@@ -173,8 +183,7 @@ bool Block::update(Square field[10][22], Direction dir)
 
   for (int j = 0; j < 4; j++)
     {
-      
-      if (field[coordinates[j][0] + updateX][coordinates[j][1] + updateY].getState())
+      if (field[coordinates[j][0] + updateX][coordinates[j][1] + updateY].getState() or !testField(coordinates[j], field))
 	return false;
       else
 	{

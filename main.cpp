@@ -39,6 +39,7 @@ int main()
 	  if (!theBlock.update(field, DOWN))
 	    {
 	      theBlock.reset(randomBlock());
+	      theBlock.initBlock(field);
 	    }
 	} else
 	{

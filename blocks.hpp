@@ -19,6 +19,8 @@ public:
 enum BlockType {I_BLOCK, J_BLOCK, L_BLOCK, O_BLOCK, S_BLOCK, T_BLOCK, Z_BLOCK};
 enum Direction {UP, RIGHT, DOWN, LEFT};
 
+BlockType randomBlock();
+
 class Block
 {
   int coordinates[4][2];

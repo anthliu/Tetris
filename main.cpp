@@ -1,9 +1,11 @@
-#include <iostream>
+#include <stdio.h>
+#include <time.h>
 #include <SFML/Graphics.hpp>
 #include "blocks.hpp"
 
 int main()
 {
+  srand(time(NULL));
   Square field[10][22];
   for (int i = 0; i < 10; i++)
     {

@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <SFML/Graphics.hpp>
 #include "blocks.hpp"
 
@@ -26,6 +27,11 @@ bool Square::getState()
 sf::Color Square::getColor()
 {
   return color;
+}
+
+BlockType randomBlock()
+{
+  return static_cast<BlockType>(rand() % 7);
 }
 
 Block::Block(BlockType type)

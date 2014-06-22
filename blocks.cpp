@@ -208,7 +208,7 @@ void drawField(Square field[10][22], sf::RenderWindow& window)
 	{
 	  if (field[i][j].getState())
 	    {
-	      rectangle.move(xPos, yPos);
+	      rectangle.setPosition(xPos, yPos);
 	      window.draw(rectangle);
 	    }
 	  xPos += TETRIS_BOX_SIZE;

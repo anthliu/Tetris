@@ -28,7 +28,7 @@ class Block
   sf::Color color;
   BlockType bType;
 
-  bool testField(int coordinatePair[2], Square field[10][22]);
+  bool testField(int coordinatePair[2], Direction dir);
 public:
   Block(BlockType type);
   void reset(BlockType type);

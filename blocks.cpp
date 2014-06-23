@@ -144,12 +144,30 @@ void Block::initBlock(Square field[10][22])
     }
 }
 
-bool Block::testField(int coordinatePair[2], Square field[10][22])
+bool Block::testField(int coordinatePair[2], Direction dir)
 {
-  if (coordinatePair[0] >= 10 or coordinatePair[0] < 0)
+  int updateX, updateY;
+  if (dir == DOWN)
     {
-      if (coordinatePair[1] >= 22 or coordinatePair[1] < 0)
-	return false;
+      updateX = 0;
+      updateY = 1;
+    } else if (dir == RIGHT)
+    {
+      updateX = 1;
+      updateY = 0;
+    } else if (dir == LEFT)
+    {
+      updateX = -1;
+      updateY = 0;
+    } else
+    {
+      updateX = 0;
+      updateY = -1;
+    }
+
+  if (coordinatePair[0] + updateX >= 10 or coordinatePair[0] + updateX < 0 or coordinatePair[1] + updateY >= 22 or coordinatePair[1] + updateY < 0)
+    {
+      return false;
     }
   return true;
 }
@@ -181,18 +199,26 @@ bool Block::update(Square field[10][22], Direction dir)
       field[coordinates[i][0]][coordinates[i][1]].setOff();
     }
 
+  bool doUpdate = true;//true = update it, false = don't
   for (int j = 0; j < 4; j++)
     {
-      if (field[coordinates[j][0] + updateX][coordinates[j][1] + updateY].getState() or !testField(coordinates[j], field))
-	return false;
-      else
+      if (field[coordinates[j][0] + updateX][coordinates[j][1] + updateY].getState() or !testField(coordinates[j], dir))
 	{
-	  coordinates[j][0] += updateX;
-	  coordinates[j][1] += updateY;
-	  field[coordinates[j][0]][coordinates[j][1]].setOn();
+	  doUpdate = false;
 	}
     }
-  return true;
+  if (doUpdate == true)
+    {
+      for (int k = 0; k < 4; k++)
+	{
+	  coordinates[k][0] += updateX;
+	  coordinates[k][1] += updateY;
+	}
+    }
+
+  initBlock(field);
+
+  return doUpdate;
 }
 
 void drawField(Square field[10][22], sf::RenderWindow& window)

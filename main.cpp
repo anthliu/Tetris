@@ -18,7 +18,7 @@ int main()
 
   sf::RenderWindow window(sf::VideoMode(10 * TETRIS_BOX_SIZE, 20 * TETRIS_BOX_SIZE), "Tetris");
   window.setVerticalSyncEnabled(true);
-  window.setFramerateLimit(30);
+  window.setFramerateLimit(10);
 
   Block theBlock(randomBlock());
   theBlock.initBlock(field);
@@ -32,6 +32,25 @@ int main()
 	  if (event.type == sf::Event::Closed)
 	    window.close();
 	}
+
+      if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+        {
+	  theBlock.update(field, LEFT);
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+        {
+	  theBlock.update(field, RIGHT);
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+        {
+	  
+        } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+        {
+	  curFrame = 0;
+	  if (!theBlock.update(field, DOWN))
+	    {
+	      theBlock.reset(randomBlock());
+	      theBlock.initBlock(field);
+	    }
+        }
 
       if (curFrame == GAME_SPEED)
 	{

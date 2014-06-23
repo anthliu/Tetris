@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #define TETRIS_BOX_SIZE 30
-#define GAME_SPEED 15
+#define GAME_SPEED 5
 
 class Square
 {

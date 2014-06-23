@@ -28,13 +28,14 @@ class Block
   sf::Color color;
   BlockType bType;
 
+  bool testField(int coordinatePair[2]);
   bool testField(int coordinatePair[2], Direction dir);
 public:
   Block(BlockType type);
   void reset(BlockType type);
   void initBlock(Square field[10][22]);
   bool update(Square field[10][22], Direction dir);
-
+  bool turn(Square field[10][22]);
 };
 
 void drawField(Square field[10][22], sf::RenderWindow& window);

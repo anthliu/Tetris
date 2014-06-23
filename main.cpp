@@ -41,7 +41,7 @@ int main()
 	  theBlock.update(field, RIGHT);
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
         {
-	  
+	  theBlock.turn(field);
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
 	  curFrame = 0;

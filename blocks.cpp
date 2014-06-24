@@ -2,11 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include "blocks.hpp"
 
-void Square::setColor(int r, int g, int b)
+int randHue()
 {
-  color.r = r;
-  color.g = g;
-  color.b = b;
+  return 128 + (rand() % 128);
+}
+
+void Square::setColor(sf::Color newColor)
+{
+  color = newColor;
 }
 
 void Square::setOn()
@@ -34,14 +37,15 @@ BlockType randomBlock()
   return static_cast<BlockType>(rand() % 7);
 }
 
-Block::Block(BlockType type)
+Block::Block(BlockType type, sf::Color newColor)
 {
-  reset(type);
+  reset(type, newColor);
 }
 
-void Block::reset(BlockType type)
+void Block::reset(BlockType type, sf::Color newColor)
 {
   /*coordinate 4 will designate the center square (except for the O_BLOCK), the one rotated around*/
+  color = newColor;
   bType = type;
   if (type == I_BLOCK)
     {
@@ -142,6 +146,7 @@ void Block::initBlock(Square field[10][22])
   for (int i = 0; i < 4; i++)
     {
       field[coordinates[i][0]][coordinates[i][1]].setOn();
+      field[coordinates[i][0]][coordinates[i][1]].setColor(color);
     }
 }
 
@@ -281,6 +286,7 @@ void drawField(Square field[10][22], sf::RenderWindow& window)
 	{
 	  if (field[i][j].getState())
 	    {
+	      rectangle.setFillColor(field[i][j].getColor());
 	      rectangle.setPosition(xPos, yPos);
 	      window.draw(rectangle);
 	    }

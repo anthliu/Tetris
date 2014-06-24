@@ -13,7 +13,7 @@ int main()
     {
       for (int j = 0; j < 22; j++)
 	{
-	  field[i][j].setColor(0, 0, 0);
+	  field[i][j].setColor(sf::Color(0, 0, 0));
 	  field[i][j].setOff();
 	}
     }
@@ -22,7 +22,7 @@ int main()
   window.setVerticalSyncEnabled(true);
   window.setFramerateLimit(10);
 
-  Block theBlock(randomBlock());
+  Block theBlock(randomBlock(), sf::Color(randHue(), randHue(), rand()));
   theBlock.initBlock(field);
   int curFrame = 0;
   int score = 0;
@@ -80,7 +80,7 @@ void frameCheck(int& score, Block& theBlock, Square field[10][22], sf::RenderWin
 	  printf("Score: %d\n", score * 100);
 	  exit(0);
 	}
-      theBlock.reset(randomBlock());
+      theBlock.reset(randomBlock(), sf::Color(randHue(), randHue(), randHue()));
       theBlock.initBlock(field);
     }
 }

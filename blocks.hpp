@@ -5,12 +5,14 @@
 #define TETRIS_BOX_SIZE 30
 #define GAME_SPEED 5
 
+int randHue();
+
 class Square
 {
   sf::Color color;
   bool on;
 public:
-  void setColor(int r, int g, int b);
+  void setColor(sf::Color newColor);
   void setOn();
   void setOff();
   bool getState();
@@ -31,8 +33,8 @@ class Block
   bool testField(int coordinatePair[2]);
   bool testField(int coordinatePair[2], Direction dir);
 public:
-  Block(BlockType type);
-  void reset(BlockType type);
+  Block(BlockType type, sf::Color);
+  void reset(BlockType type, sf::Color);
   void initBlock(Square field[10][22]);
   bool update(Square field[10][22], Direction dir);
   bool turn(Square field[10][22]);

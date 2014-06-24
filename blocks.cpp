@@ -239,8 +239,8 @@ bool Block::turn(Square field[10][22])
   for (int i; i < 3; i++)
     {
       //rotate(x, y) = (y, -x)
-      tempCoord[i][0] = coordinates[i][0] + (coordinates[3][1] - coordinates[i][1]);
-      tempCoord[i][1] = coordinates[i][1] - (coordinates[3][0] - coordinates[i][0]);
+      tempCoord[i][0] = coordinates[3][0] + (coordinates[i][1] - coordinates[3][1]);
+      tempCoord[i][1] = coordinates[3][1] - (coordinates[i][0] - coordinates[3][0]);
     }
 
   for (int i = 0; i < 4; i++)
@@ -251,7 +251,7 @@ bool Block::turn(Square field[10][22])
   bool doUpdate = true;//true = update it, false = don't
   for (int j = 0; j < 4; j++)
     {
-      if (field[tempCoord[j][0]][tempCoord[j][1]].getState() or !testField(coordinates[j]))
+      if (field[tempCoord[j][0]][tempCoord[j][1]].getState() or !testField(tempCoord[j]))
 	{
 	  doUpdate = false;
 	}

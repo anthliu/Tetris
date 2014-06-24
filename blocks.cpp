@@ -289,3 +289,44 @@ void drawField(Square field[10][22], sf::RenderWindow& window)
       yPos += TETRIS_BOX_SIZE;
     }
 }
+
+int updateField(Square field[10][22])
+{
+  /*check and update for completed rows and return score*/
+  int score = 0;
+  bool check;
+  int xPos;
+  for(int i = 21; i >= 2; i--)
+    {
+      xPos = 0;
+      check = true;
+      while(check == true)
+	{
+	  if (xPos == 10)
+	    {
+	      score++;
+	      for (int j = i; j >= 2; j--)
+		{
+		  for (int k = 0; k < 10; k++)
+		    {
+		      if (field[k][j - 1].getState())
+			{
+			  field[k][j - 1].setOff();
+			  field[k][j].setOn();
+			}
+		      else
+			field[k][j].setOff();
+		    }
+		}
+	      i++;
+	    }
+	  if (!field[xPos][i].getState())
+	    {
+	      check = false;
+	    }
+	  xPos++;
+	}
+    }
+
+  return score * score;
+}

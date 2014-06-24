@@ -47,6 +47,7 @@ int main()
 	  curFrame = 0;
 	  if (!theBlock.update(field, DOWN))
 	    {
+	      updateField(field);
 	      theBlock.reset(randomBlock());
 	      theBlock.initBlock(field);
 	    }
@@ -57,6 +58,7 @@ int main()
 	  curFrame = 0;
 	  if (!theBlock.update(field, DOWN))
 	    {
+	      updateField(field);
 	      theBlock.reset(randomBlock());
 	      theBlock.initBlock(field);
 	    }

@@ -330,3 +330,15 @@ int updateField(Square field[10][22])
 
   return score * score;
 }
+
+bool checkGameOver(Square field[10][22])
+{
+  for (int i = 0; i < 10; i++)
+    {
+      if (field[i][1].getState())
+	{
+	  return true;
+	}
+    }
+  return false;
+}

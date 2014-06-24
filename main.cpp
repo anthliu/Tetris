@@ -3,6 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "blocks.hpp"
 
+void frameCheck(int& score, Block& theBlock, Square field[10][22], sf::RenderWindow& window);
+
 int main()
 {
   srand(time(NULL));
@@ -23,6 +25,7 @@ int main()
   Block theBlock(randomBlock());
   theBlock.initBlock(field);
   int curFrame = 0;
+  int score = 0;
   
   while (window.isOpen())
     {
@@ -45,23 +48,13 @@ int main()
         } else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
 	  curFrame = 0;
-	  if (!theBlock.update(field, DOWN))
-	    {
-	      updateField(field);
-	      theBlock.reset(randomBlock());
-	      theBlock.initBlock(field);
-	    }
+	  frameCheck(score, theBlock, field, window);
         }
 
       if (curFrame == GAME_SPEED)
 	{
 	  curFrame = 0;
-	  if (!theBlock.update(field, DOWN))
-	    {
-	      updateField(field);
-	      theBlock.reset(randomBlock());
-	      theBlock.initBlock(field);
-	    }
+	  frameCheck(score,theBlock, field, window);
 	} else
 	{
 	  curFrame++;
@@ -73,4 +66,21 @@ int main()
     }
 
   return 0;
+}
+
+void frameCheck(int& score, Block& theBlock, Square field[10][22], sf::RenderWindow& window)
+{
+  if (!theBlock.update(field, DOWN))
+    {
+      score += updateField(field);
+      if (checkGameOver(field))
+	{
+	  window.close();
+	  printf("Game Over!\n");
+	  printf("Score: %d\n", score * 100);
+	  exit(0);
+	}
+      theBlock.reset(randomBlock());
+      theBlock.initBlock(field);
+    }
 }

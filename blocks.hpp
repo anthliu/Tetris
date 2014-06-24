@@ -40,5 +40,6 @@ public:
 
 void drawField(Square field[10][22], sf::RenderWindow& window);
 int updateField(Square field[10][22]);//check and update for completed rows and return score
+bool checkGameOver(Square field[10][22]);
 
 #endif
